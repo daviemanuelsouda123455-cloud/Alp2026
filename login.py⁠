@@ -1,0 +1,52 @@
+import os
+
+def limpar_ecra():
+    # Limpa o terminal (compatível com Windows, Mac e Linux)
+    os.system('cls' if os.name == 'nt' else 'clear')
+
+def menu_principal():
+    while True:
+        limpar_ecra()
+        print("================================")
+        print("        MENU PRINCIPAL          ")
+        print("================================")
+        print("1. Gestão de Utilizadores (Não funcional)")
+        print("2. Relatórios (Não funcional)")
+        print("3. Logout")
+        print("4. Encerrar programa")
+        print("================================")
+        
+        opcao = input("Escolha uma opção: ")
+        
+        if opcao == '3':
+            print("A efetuar logout...")
+            return True  # Retorna True para indicar que deve voltar ao login
+        elif opcao == '4':
+            print("A encerrar o programa. Até breve!")
+            exit()
+        else:
+            input("\nOpção inválida ou funcionalidade ainda não implementada. Prima Enter para continuar...")
+
+def sistema_login():
+    while True:
+        limpar_ecra()
+        print("================================")
+        print("         LOGIN DO SISTEMA       ")
+        print("================================")
+        
+        utilizador = input("Utilizador: ")
+        senha = input("Senha: ")
+        
+        if utilizador == "admin" and senha == "123":
+            print("\nLogin efetuado com sucesso! Prima Enter para continuar...")
+            input()
+            # Vai para o menu e se retornar True, repete o ciclo de login (logout)
+            voltar_login = menu_principal()
+            if not voltar_login:
+                break
+        else:
+            print("\nUtilizador ou senha incorretos! Tente novamente.")
+            input("Prima Enter para continuar...")
+
+# Iniciar o sistema
+sistema_login()
